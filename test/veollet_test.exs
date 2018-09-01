@@ -9,7 +9,7 @@ defmodule VeolletTest do
 
   def verify_signed_tx?({:signed, tx, signature, _}, public_key) do
     opts = [public_key, :crypto.ec_curve(:secp256k1)]
-    :crypto.verify(:ecdsa, :sha256, Veollet.serialize(tx), Base.decode64!(signature), opts)
+    :crypto.verify(:ecdsa, :sha256, Veollet.serialize(tx), signature, opts)
   end
 
   test "serialization of erlang data types" do

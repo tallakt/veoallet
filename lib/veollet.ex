@@ -43,7 +43,7 @@ defmodule Veollet do
   def sign_tx(tx, private_key) do
     opts = [private_key, :crypto.ec_curve(:secp256k1)]
     signature = :crypto.sign(:ecdsa, :sha256, serialize(tx), opts)
-    {:signed, tx, Base.encode64(signature), []}
+    {:signed, tx, signature, []}
   end
 
   def serialize(data) when is_binary(data), do: <<0, byte_size(data)::32, data::binary>>
@@ -84,6 +84,8 @@ defmodule Veollet do
     List.to_tuple([String.to_atom(string) | elements])
   end
 
+  defp web_to_erlang_data(str) when is_binary(str), do: Base.decode64!(str)
+
   defp web_to_erlang_data(data), do: data
 
   defp erlang_to_web_data(data)
@@ -95,6 +97,8 @@ defmodule Veollet do
   defp erlang_to_web_data(tuple) when is_tuple(tuple) do
     erlang_to_web_data_helper(Tuple.to_list(tuple))
   end
+
+  defp erlang_to_web_data(str) when is_binary(str), do: Base.encode64(str)
 
   defp erlang_to_web_data(data), do: data
 
