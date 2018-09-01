@@ -1,0 +1,5 @@
+%{
+  "encrypter": {:git, "https://github.com/zack-bitcoin/encrypter", "9dc22beac548abd7564c2e5bbaa5c1bf21dd3a31", []},
+  "jiffy": {:git, "https://github.com/davisp/jiffy", "1febce3ca86c5ca5d5a3618ed3d5f125bb99e4c5", [tag: "0.14.8"]},
+  "poison": {:hex, :poison, "4.0.1", "bcb755a16fac91cad79bfe9fc3585bb07b9331e50cfe3420a24bcc2d735709ae", [:mix], [], "hexpm"},
+}
